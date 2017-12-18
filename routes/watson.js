@@ -40,7 +40,7 @@ router.post('/', function (req, res) {
 				outputAnalysis.tones = values[1];
 				feedbackAPI.saveFeedback(outputAnalysis);
 
-				//res.send(outputAnalysis);
+				res.redirect('/thanks');
 			});
 			
 		}, err => res.status(500).send(err));
