@@ -1,6 +1,5 @@
 var ibmdb = require('ibm_db');
 
-
 /*
  * Call Watson Language Translator Service to identify the language
  */
@@ -98,16 +97,14 @@ exports.getFeedback = function () {
                     });
                 });
             }
-
-            
         });
-        
     });
     return promise;
 };
 
 exports.saveFeedback = function (originalFeedback, language, englishFeedback, sentiment, anger, fear, joy, sadness, keywords) {
-    const sql = `INSERT INTO testschema.FEEDBACK (ORIGINAL_FEEDBACK, LANGUAGE, ENGLISH_FEEDBACK, SENTIMENT, ANGER, FEAR, JOY, SADNESS, KEYWORDS) VALUES (
+    var promise = new Promise((resolve, reject) => {
+        const sql = `INSERT INTO testschema.FEEDBACK (ORIGINAL_FEEDBACK, LANGUAGE, ENGLISH_FEEDBACK, SENTIMENT, ANGER, FEAR, JOY, SADNESS, KEYWORDS) VALUES (
             '${originalFeedback}', 
             '${language}', 
             '${englishFeedback}', 
@@ -119,24 +116,26 @@ exports.saveFeedback = function (originalFeedback, language, englishFeedback, se
             '${keywords}'
     );`
 
-    ibmdb.open("DRIVER={DB2};DATABASE=HPD2;UID=nodedb2;PWD=nodedb2;HOSTNAME=9.47.66.219;port=51500", function (err, conn) {
-        if (err) {
-            console.error("error: ", err.message);
-        } else {
+        ibmdb.open("DRIVER={DB2};DATABASE=HPD2;UID=nodedb2;PWD=nodedb2;HOSTNAME=9.47.66.219;port=51500", function (err, conn) {
+            if (err) {
+                console.error("error: ", err.message);
+            } else {
 
-            conn.query(sql, [], function (err, result) {
-                if (err) console.log(err);
-                else console.log(result);
+                conn.query(sql, [], function (err, result) {
+                    if (err) console.log(err);
+                    else console.log(result);
 
-                console.log('sql', sql);
-                conn.close(function () {
-                    console.log("Connection Closed");
+                    console.log('sql', sql);
+                    conn.close(function () {
+                        console.log("Connection Closed");
+                    });
                 });
-            });
-        }
+            }
 
-        res.send({ result: 'success' });
+            resolve(result);
+        });
+        
     });
-    return data;
+    return promise;
 };
 
