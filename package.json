@@ -1,7 +1,7 @@
 {
   "name": "customer-feedback-power",
   "version": "0.0.1",
-  "description": "Customer feedback application on Power Systems integrating with Watson",
+  "description": "Customer feedback application on Power Systems integrating with Watson services",
   "dependencies": {
     "body-parser": "latest",
     "dotenv": "^4.0.0",
