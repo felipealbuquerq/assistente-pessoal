@@ -10,6 +10,9 @@ router.get('/', function (req, res) {
    res.sendFile(path.join(__dirname, '../views/index.html'));
 });
 
-
+// Thanks page route
+router.get('/thanks', function (req, res) {
+    res.sendFile(path.join(__dirname, '../views/thanks.html'));
+ });
 
 module.exports = router;
