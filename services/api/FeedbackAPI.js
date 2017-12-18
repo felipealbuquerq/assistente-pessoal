@@ -52,13 +52,13 @@ exports.getFeedback = function () {
                         avgJoy = avgJoy + parseFloat(feedback[i].JOY);
                         avgSadness = avgSadness + parseFloat(feedback[i].SADNESS);
                         switch (feedback[i].SENTIMENT.trim()) {
-                            case 'Positive':
+                            case 'positive':
                                 sentimentPositive += 1;
                                 break;
-                            case 'Negative':
+                            case 'negative':
                                 sentimentNegative += 1;
                                 break;
-                            case 'Neutral':
+                            case 'neutral':
                                 sentimentNeutral += 1;
                                 break;
                         }
