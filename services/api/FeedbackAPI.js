@@ -130,10 +130,10 @@ exports.saveFeedback = function (parameters) {
             parameters.language,
             parameters.englishFeedback, 
             parameters.nlu.sentiment,
-            toneList.joy || 0,
             toneList.anger || 0,
-            toneList.sadness || 0,
             toneList.fear || 0,
+            toneList.joy || 0,
+            toneList.sadness || 0,
             parameters.nlu.keywords
         ];
 
