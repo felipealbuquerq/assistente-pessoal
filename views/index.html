@@ -12,8 +12,6 @@
 						padding: 5px;
 					}
 				</style>
-
-
 		  </head>
 	<body>
 			<div class="jumbotron">
@@ -27,7 +25,7 @@
 				</div>
 				<div class="panel-body">
 						<form class="form-horizontal" action="watson" method="post">
-								<textarea class="form-control" name="feedback" rows="3">Enter your feedback here</textarea>
+								<textarea class="form-control" name="feedback" maxlength="128" rows="3" placeholder="Enter your feedback here"></textarea>
 								<br/> 
 								<button type="submit" class="btn btn-primary">Submit</button>
 							</form>

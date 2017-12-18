@@ -6,6 +6,7 @@ var express = require('express');
 var languageTranslatorServices = require('../services/watson/languageTranslatorServices');
 	toneAnalyzerServices = require('../services/watson/toneAnalyzerService');
 	naturalLanguageUnderstandingServices = require('../services/watson/naturalLanguageUnderstandingServices');
+	feedbackAPI = require('../services/api/FeedbackAPI');
 
 //error message for missing Feedback
 const MISSING_FEEDBACK_ERROR = 'Feedback not passed';
@@ -37,7 +38,9 @@ router.post('/', function (req, res) {
 			Promise.all([nluPromise , tonePromise]).then(values => {
 				outputAnalysis.nlu = values[0];
 				outputAnalysis.tones = values[1];
-				res.send(outputAnalysis);
+				feedbackAPI.saveFeedback(outputAnalysis);
+
+				//res.send(outputAnalysis);
 			});
 			
 		}, err => res.status(500).send(err));

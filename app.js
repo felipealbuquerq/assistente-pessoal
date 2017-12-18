@@ -38,7 +38,6 @@ var index = require('./routes'),
 	watson = require('./routes/watson');
 	api = require('./routes/api');
 
-
 //In case the caller access any resource under the root /, call index route
 app.use('/', index);
 
