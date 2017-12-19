@@ -7,7 +7,7 @@ exports.getFeedback = function () {
     var promise = new Promise((resolve, reject) => {
         const sql = "SELECT * FROM testschema.feedback";
         /*
-        create the object to send all back to the browser
+        create the object to send data back to the browser
         */
         var data = {};
         /*Connect to the database server
@@ -22,14 +22,12 @@ exports.getFeedback = function () {
                 console.error("error: ", err.message);
                 reject(err);
             } else {
-
                 /*
                     On successful connection issue the SQL query by calling the query() function on Database
                     param 1: The SQL query to be issued
                     param 2: The callback function to execute when the database server responds
                 */
                 conn.query(sql, function (err, feedback, moreResultSets) {
-
                     /*
                         create the auxiliar variables to format 	
                     */
@@ -63,7 +61,6 @@ exports.getFeedback = function () {
                                 break;
                         }
                     }
-
                     /*
                     prepare the average and the style for the dashboard bars
                     */
@@ -83,11 +80,9 @@ exports.getFeedback = function () {
                         neutral: (sentimentNeutral / rows) * 100,
                         neutral_p: "width:" + (sentimentNeutral / rows) * 100 + "%",
                     });
-
                     data.dashboard = avgValues;
                     data.detail = feedback;
                     resolve(data);
-
                     /*
                         Close the connection to the database
                         param 1: The callback function to execute on completion of close function.
@@ -128,7 +123,7 @@ exports.saveFeedback = function (parameters) {
         const params = [
             parameters.originalFeedback,
             parameters.language,
-            parameters.englishFeedback, 
+            parameters.englishFeedback,
             parameters.nlu.sentiment,
             toneList.anger || 0,
             toneList.fear || 0,
@@ -141,7 +136,6 @@ exports.saveFeedback = function (parameters) {
             if (err) {
                 console.error("error: ", err.message);
             } else {
-
                 conn.query(sql, params, function (err, result) {
                     if (err) console.log(err);
                     else console.log(result);
@@ -154,10 +148,7 @@ exports.saveFeedback = function (parameters) {
                     });
                 });
             }
-
-            
         });
-        
     });
     return promise;
 };
