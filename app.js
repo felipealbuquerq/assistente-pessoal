@@ -53,3 +53,4 @@ app.use("/frontend", express.static(path.join(__dirname, "/frontend")));
 
 // start server on the specified port and binding host
 app.listen(port);
+console.log(`O Servidor está rodando em: http://localhost:${port}`);
