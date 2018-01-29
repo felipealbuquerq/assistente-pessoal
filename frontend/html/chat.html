@@ -3,10 +3,10 @@
 			<p class="panel-title">Converse com Maria.</p>
 		</div>
 		<div class="panel-body">
-			<p ng-repeat="c in conversa">
-                {{c.text}}
-
-            </p>
+			<div ng-repeat="c in conversa">
+				<div ng-show="c.autor"><p>Maria diz: {{c.text}}</p></div>
+				<div ng-show="!c.autor"><p>Você diz: {{c.text}}</p></div>
+            </div>
 		</div>
 		<div class="panel-footer">
 			<form class="form-horizontal" action="watson" method="post">

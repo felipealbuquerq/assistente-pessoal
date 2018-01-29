@@ -11,7 +11,6 @@ angular.module('project').factory('ConversationService',  function($http, $q){
                  context: params.context
              }
              return $http.get(url).then(function(resposta){
-                console.log(resposta);
                 return resposta;
              });
     }
