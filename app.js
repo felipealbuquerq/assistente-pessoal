@@ -17,6 +17,8 @@
 // Load environment variables from .env file
 require('dotenv').config();
 
+const wiki = require('wikijs').default;
+
 var port = process.env.PORT || 3000;
 
 //Express Web Framework, and create a new express server
@@ -51,6 +53,14 @@ app.use('/api', api);
 
 //In case caller want to see the dashboard, call the /feedback, 
 app.use("/frontend", express.static(path.join(__dirname, "/frontend")));
+
+wiki().page('Batman')
+    .then(function(page){
+     page.summary().then(res => {
+		 console.log(res)
+	 })
+	})
+    
 
 // start server on the specified port and binding host
 app.listen(port);

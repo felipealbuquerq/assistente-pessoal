@@ -6,7 +6,10 @@
     "body-parser": "latest",
     "dotenv": "^4.0.0",
     "express": "4.*",
-    "watson-developer-cloud": "^3.0.3"
+    "install": "^0.10.4",
+    "npm": "^5.6.0",
+    "watson-developer-cloud": "^3.0.3",
+    "wikijs": "^4.5.1"
   },
   "scripts": {
     "start": "node app.js"
