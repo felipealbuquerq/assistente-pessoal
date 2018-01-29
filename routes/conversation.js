@@ -11,7 +11,7 @@ router.get('/', function (req, res) {
 	//sempre inicia com uma conversa vazia, para gerar a mensagem de saudação
 	conversationService.conversa(req.query.text).then(resposta => {
         console.log("Veja a resposta da início da conversa", resposta);
-        return resposta;
+	res.send(resposta);
 	})
 });
 
