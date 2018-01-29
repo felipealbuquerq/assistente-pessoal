@@ -1,0 +1,22 @@
+.watson-diz{
+    border: 2px solid #db8abce7;
+    background: #db8abc49;
+    width: 60%;
+    border-radius: 15px 15px 15px 0px;
+    float: left;
+    padding: 5px 3px 5px 8px;
+}
+
+.user-diz {
+    border: 2px solid blue;
+    background: #4d7fdd49;
+    width: 60%;
+    border-radius: 15px 15px 0px 15px;
+    float: right;
+    padding: 5px 3px 5px 8px;
+}
+
+.janela-chat {
+    height: 300px;
+    overflow: scroll
+}

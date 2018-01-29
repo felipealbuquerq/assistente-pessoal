@@ -54,12 +54,12 @@ app.use('/api', api);
 //In case caller want to see the dashboard, call the /feedback, 
 app.use("/frontend", express.static(path.join(__dirname, "/frontend")));
 
-wiki().page('Batman')
-    .then(function(page){
-     page.summary().then(res => {
-		 console.log(res)
-	 })
-	})
+// wiki().page('Batman')
+//     .then(function(page){
+//      page.summary().then(res => {
+// 		 console.log(res)
+// 	 })
+// 	})
     
 
 // start server on the specified port and binding host

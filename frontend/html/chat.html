@@ -2,10 +2,10 @@
 		<div class="panel-heading">
 			<p class="panel-title">Converse com Maria.</p>
 		</div>
-		<div class="panel-body">
+		<div class="panel-body janela-chat ">
 			<div ng-repeat="c in conversa">
-				<div ng-show="c.autor"><p>Maria diz: {{c.text}}</p></div>
-				<div ng-show="!c.autor"><p>Você diz: {{c.text}}</p></div>
+				<div ng-show="c.autor" class="watson-diz"><p>Maria diz: {{c.text}}</p></div>
+				<div ng-show="!c.autor" class="user-diz"><p>Você diz: {{c.text}}</p></div>
             </div>
 		</div>
 		<div class="panel-footer">
@@ -20,3 +20,5 @@
 		</div>
 
 	</div>
+
+
