@@ -1,0 +1,22 @@
+<div class="panel panel-default" >
+		<div class="panel-heading">
+			<p class="panel-title">Converse com Maria.</p>
+		</div>
+		<div class="panel-body">
+			<p ng-repeat="c in conversa">
+                {{c.text}}
+
+            </p>
+		</div>
+		<div class="panel-footer">
+			<form class="form-horizontal" action="watson" method="post">
+					<div class="form-group">
+						<label for="exampleFormControlInput1">Você:</label>
+						<input type="text" class="form-control" id="inputchat" ng-model="mensagem" placeholder="Digite sua mensagem">
+					</div>
+				<br/>
+				<button type="button" ng-click="fala(mensagem)" class="btn btn-primary">Enviar</button>
+			</form>
+		</div>
+
+	</div>

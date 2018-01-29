@@ -6,12 +6,19 @@ var express = require('express');
 var languageTranslatorServices = require('../services/watson/languageTranslatorServices');
 	toneAnalyzerServices = require('../services/watson/toneAnalyzerService');
 	naturalLanguageUnderstandingServices = require('../services/watson/naturalLanguageUnderstandingServices');
+	conversationService = require('../services/watson/conversationService');
 	feedbackAPI = require('../services/api/FeedbackAPI');
 
 //error message for missing Feedback
 const MISSING_FEEDBACK_ERROR = 'Feedback not passed';
 
 router.post('/', function (req, res) {
+
+	//sempre inicia com uma conversa vazia, para gerar a mensagem de saudação
+	conversationService.conversa({text:'Inicio'}).then(resposta => {
+		console.log("Veja a resposta da início da conversa", resposta);
+	})
+
 	//If the feedback is not passed, return error to the caller
 	if (req === null || req.body === null || req.body.feedback === null) {
 		res.status(500).send(MISSING_FEEDBACK_ERROR);
@@ -39,6 +46,10 @@ router.post('/', function (req, res) {
 				outputAnalysis.nlu = values[0];
 				outputAnalysis.tones = values[1];
 				feedbackAPI.saveFeedback(outputAnalysis);
+
+				conversationService.conversa({text:'você sabe contar piadas?'}).then(resposta => {
+					console.log("Veja a resposta da conversação", resposta);
+				})
 
 				res.redirect('/thanks');
 			});

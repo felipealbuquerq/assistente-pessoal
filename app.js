@@ -36,6 +36,7 @@ app.use(bodyParser.urlencoded({
 //Routes modules
 var index = require('./routes'),
 	watson = require('./routes/watson');
+	conversation = require('./routes/conversation');
 	api = require('./routes/api');
 
 //In case the caller access any resource under the root /, call index route
@@ -43,7 +44,7 @@ app.use('/', index);
 
 //In case the caller access any resource under /watson, call watson route
 app.use('/watson', watson);
-
+app.use('/conversation', conversation);
 
 //In case the caller access any resource under /watson, call watson route
 app.use('/api', api);
