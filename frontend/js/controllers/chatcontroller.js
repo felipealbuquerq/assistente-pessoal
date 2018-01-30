@@ -30,4 +30,45 @@ angular.module('project').controller('chatController', ['$scope', 'ConversationS
         });
         
     }
+
+    $scope.cidade = function(cidade) {
+        ConversationService.getCidade(cidade).then(function(resposta){
+            console.log(resposta)
+            let conversa = {}
+            if(resposta.data.coordinates){
+                conversa = {
+                    text: `${cidade} - lat:${resposta.data.coordinates.lat}/lon:${resposta.data.coordinates.lon}`,
+                    autor: true,
+                    context: $scope.context
+                };
+                $scope.conversa.push(conversa)
+            }
+            
+            conversa = {
+                text: `${resposta.data.displaytitle} - ${resposta.data.description || resposta.data.extract}`,
+                autor: true,
+                context: $scope.context
+            };
+            $scope.conversa.push(conversa)
+            $scope.mensagem=""
+        });
+        
+    }
+
+    $scope.maisInfo = function(info) {
+        ConversationService.getCidade(info).then(function(resposta){
+            console.log(resposta)
+            let conversa = {}
+            
+            
+            conversa = {
+                text: `${resposta.data.extract}`,
+                autor: true,
+                context: $scope.context
+            };
+            $scope.conversa.push(conversa)
+            $scope.mensagem=""
+        });
+        
+    }
 }])
