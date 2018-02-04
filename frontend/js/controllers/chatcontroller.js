@@ -1,4 +1,4 @@
-angular.module('project').controller('chatController', ['$scope', 'ConversationService', function($scope, ConversationService) {
+angular.module('project').controller('chatController', ['$scope', 'ConversationService', 'WeatherService', function($scope, ConversationService, WeatherService) {
     $scope.conversa = [
         {text: 'Bom dia, o que vamos fazer hoje?', autor: true},
         {text: 'Você sabe contar piadas?', autor: false},
@@ -35,13 +35,42 @@ angular.module('project').controller('chatController', ['$scope', 'ConversationS
         ConversationService.getCidade(cidade).then(function(resposta){
             console.log(resposta)
             let conversa = {}
+            let params = {};
             if(resposta.data.coordinates){
+                let lat = resposta.data.coordinates.lat;
+                let lon = resposta.data.coordinates.lon;
+                params.lat = lat;
+                params.lon = lon;
+                if( lat && lon){
+                    WeatherService.pegaClima(params).then(function(clima) {
+                       
+                        if(clima.data.forecasts.length > 0){
+                            $scope.temclima = true;
+                            $scope.previsoes = clima.data.forecasts
+                         }else{
+                            $scope.temclima = false;
+                         }
+
+                        console.log(clima);
+
+                    })
+                }
+                let imagem = resposta.data.thumbnail;
+                if(imagem){
+                    $scope.temimagem = true;
+                    $scope.imagemtitulo = cidade;
+                    $scope.imagemcidade = imagem.source;
+                } else {
+                    $scope.temimagem = false;
+                } 
+
                 conversa = {
-                    text: `${cidade} - lat:${resposta.data.coordinates.lat}/lon:${resposta.data.coordinates.lon}`,
+                    text: `${cidade} - lat:${lat}/lon:${lon}`,
                     autor: true,
                     context: $scope.context
                 };
                 $scope.conversa.push(conversa)
+                
             }
             
             conversa = {

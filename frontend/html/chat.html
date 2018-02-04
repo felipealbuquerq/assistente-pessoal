@@ -1,26 +1,71 @@
-<div class="panel panel-default" >
-		<div class="panel-heading">
-			<p class="panel-title">Converse com Maria.</p>
+<div class="row">
+	<div class="col-md-8">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card-group" ng-show="temclima">
+					<div class="card" ng-repeat="dia in previsoes">
+						<img class="card-img-top" src="../frontend/images/{{dia.night.icon_code}}.png" alt="Card image cap">
+						<div class="card-body">
+						<h5 class="card-title">{{dia.dow}}</h5>
+						<p class="card-text">{{dia.narrative}}</p>
+						<p class="card-text"><small class="text-muted">Icone: {{dia.night.icon_code}}</small></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+						<div class="card" ng-show="temimagem">
+								<div class="card-header">
+								  Imagem
+								</div>
+								<div class="card-body">
+								  <h5 class="card-title">{{imagemtitulo}}</h5>
+								  <p class="card-text"><img src="{{imagemcidade}}"></p>
+								  <a href="#" class="btn btn-primary">Go somewhere</a>
+								</div>
+							  </div>
+				</div>
+				<div class="col-md-6">
+						<div class="card">
+								<div class="card-header">
+								  Featured
+								</div>
+								<div class="card-body">
+								  <h5 class="card-title">Special title treatment</h5>
+								  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+								  <a href="#" class="btn btn-primary">Go somewhere</a>
+								</div>
+							  </div>
+				</div>
+			</div>
 		</div>
-		<div class="panel-body janela-chat ">
-			<div ng-repeat="c in conversa">
-				<div ng-show="c.autor" class="watson-diz"><p>Maria diz: {{c.text}}</p></div>
-				<div ng-show="!c.autor" class="user-diz"><p>Você diz: {{c.text}}</p></div>
-            </div>
-		</div>
-		<div class="panel-footer">
-			<form class="form-horizontal" action="watson" method="post">
-					<div class="form-group">
+		
+	</div>
+	<div class="col-md-4">
+		<div class="card">
+			<div class="card-header">
+					Converse com Maria.
+			</div>
+			<div class="card-body">
+				<div class="panel-body janela-chat ">
+					<div ng-repeat="c in conversa">
+						<div ng-show="c.autor" class="watson-diz"><p>Maria diz: {{c.text}}</p></div>
+						<div ng-show="!c.autor" class="user-diz"><p>Você diz: {{c.text}}</p></div>
+					</div>
+				</div>
+				<div class="form-group">
 						<label for="exampleFormControlInput1">Você:</label>
 						<input type="text" class="form-control" id="inputchat" ng-model="mensagem" placeholder="Digite sua mensagem">
 					</div>
-				<br/>
-				<button type="button" ng-click="fala(mensagem)" class="btn btn-primary">Enviar</button>
-				<button type="button" ng-click="cidade(mensagem)" class="btn btn-primary">Fale Sobre</button>
-				<button type="button" ng-click="maisInfo(mensagem)" class="btn btn-primary">Mais Detalhes</button>
-			</form>
+
+						<button type="button" ng-click="fala(mensagem)" class="btn btn-primary">Enviar</button>
+						<button type="button" ng-click="cidade(mensagem)" class="btn btn-primary">Fale Sobre</button>
+						<button type="button" ng-click="maisInfo(mensagem)" class="btn btn-primary">Mais Detalhes</button>
+			</div>
 		</div>
 
+		
 	</div>
+</div>
+
 
 
